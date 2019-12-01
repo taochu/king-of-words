@@ -1,7 +1,16 @@
 import React from "react";
 
-export default class Home extends React.Component {
+class Home extends React.Component {
 	render() {
-		return <h1>Hello World</h1>;
+		return (
+			<div>
+				<h1>King of Words</h1>
+				<button>Play as guest</button>
+				<button>Login</button>
+				<button>Sign up</button>
+			</div>
+		);
 	}
 }
+
+export default Home;

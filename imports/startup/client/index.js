@@ -1,10 +1,11 @@
 import { Meteor } from "meteor/meteor";
 import React from "react";
 import { render } from "react-dom";
-import Home from "../../ui/Home.jsx";
+import App from "../../ui/App";
+import "./app_routes";
 
 if (Meteor.isClient) {
 	Meteor.startup(() => {
-		render(<Home />, document.getElementById("react-root"));
+		render(<App />, document.getElementById("react-root"));
 	});
 }
