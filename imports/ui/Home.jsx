@@ -1,13 +1,50 @@
 import React from "react";
 
 class Home extends React.Component {
+	state = { username: "", password: "" };
+
 	render() {
+		const { username, password } = this.state;
+		const { ready, user } = this.props;
+
+		if (!ready) return <div>LOADING</div>;
 		return (
-			<div>
+			<div className="flex-column space-20">
 				<h1>King of Words</h1>
+				<div className="flex-column">
+					<input
+						type="text"
+						placeholder="Username"
+						value={username}
+						onChange={e => this.setState({ username: e.target.value })}
+					/>
+					<input
+						type="text"
+						placeholder="Password"
+						value={password}
+						onChange={e => this.setState({ password: e.target.value })}
+					/>
+				</div>
+				<button
+					onClick={() => {
+						user
+							? Meteor.logout()
+							: Meteor.loginWithPassword(username, password, (err, res) => {
+									if (err) alert(err);
+							  });
+					}}
+				>
+					{user ? "Log out" : "Log in"}
+				</button>
+				<div className="flex-row">
+					<div className="divider" />
+					<div style={{ color: "#999", lineHeight: "15px", margin: "0 18px" }}>
+						OR
+					</div>
+					<div className="divider" />
+				</div>
+				<button onClick={() => FlowRouter.go("/sign-up")}>Sign up</button>
 				<button>Play as guest</button>
-				<button>Login</button>
-				<button>Sign up</button>
 			</div>
 		);
 	}
