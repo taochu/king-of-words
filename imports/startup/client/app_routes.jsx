@@ -9,7 +9,7 @@ export const appRoutes = [
 	FlowRouter.route("/", {
 		name: "home",
 		action() {
-			mount(AppContainer, { content: <Home /> });
+			mount(AppContainer, { content: props => <Home {...props} /> });
 		}
 	}),
 	FlowRouter.route("/sign-up", {
