@@ -44,7 +44,7 @@ class Home extends React.Component {
 					<div className="divider" />
 				</div>
 				<button onClick={() => FlowRouter.go("/sign-up")}>Sign up</button>
-				<button>Play as guest</button>
+				<button onClick={() => FlowRouter.go("/play")}>Play</button>
 			</div>
 		);
 	}

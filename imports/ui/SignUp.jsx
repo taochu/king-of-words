@@ -1,6 +1,5 @@
 import React from "react";
-import { Accounts } from "meteor/accounts-base";
-import { Users } from "../api/shared/models/users";
+import { UserMethods } from "../api/shared/methods/user_methods";
 
 class SignUp extends React.Component {
 	state = {
@@ -34,7 +33,17 @@ class SignUp extends React.Component {
 						value={confirmPassword}
 						onChange={e => this.setState({ confirmPassword: e.target.value })}
 					/>
-					<button onClick={() => Users.createNewUser({ username, password })}>
+					<button
+						onClick={() =>
+							UserMethods.addUser.call(
+								{ option: { username, password } },
+								(err, res) => {
+									if (err) alert(err.error);
+									else FlowRouter.go("/");
+								}
+							)
+						}
+					>
 						Sign Up
 					</button>
 				</div>

@@ -4,6 +4,7 @@ import { mount } from "react-mounter";
 import AppContainer from "../../ui/AppContainer";
 import SignUp from "../../ui/SignUp";
 import Home from "../../ui/Home";
+import PlayContainer from "../../ui/play/PlayContainer";
 
 export const appRoutes = [
 	FlowRouter.route("/", {
@@ -16,6 +17,12 @@ export const appRoutes = [
 		name: "sign-up",
 		action() {
 			mount(AppContainer, { content: <SignUp /> });
+		}
+	}),
+	FlowRouter.route("/play", {
+		name: "play",
+		action() {
+			mount(AppContainer, { content: <PlayContainer /> });
 		}
 	})
 ];
