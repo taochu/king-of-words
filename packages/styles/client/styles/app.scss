@@ -1,0 +1,66 @@
+/* Common */
+.flex {
+	display: flex;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.margin-vertical-20 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.space-20 > * {
+	margin-bottom: 20px;
+}
+
+.divider {
+	flex-grow: 1;
+	top: 0.45em;
+	height: 1px;
+	flex-shrink: 1;
+	position: relative;
+	background-color: #efefef;
+}
+
+/* Sign up page */
+.sign-up-page {
+	text-align: center;
+}
+
+/* Play Page */
+.centered {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	position: fixed;
+}
+
+.game-btn {
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+
+	&.selected {
+		background-color: #28a745;
+	}
+}
+
+.game-btn:hover {
+	background-color: #28a745;
+	border-color: #28a745;
+	color: white;
+	transition-duration: 0.3s;
+}
