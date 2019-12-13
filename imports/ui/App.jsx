@@ -3,9 +3,7 @@ import React from "react";
 class App extends React.Component {
 	render() {
 		const { content } = this.props;
-		return (
-			<div>{typeof content === "function" ? content(this.props) : content}</div>
-		);
+		return <>{typeof content === "function" ? content(this.props) : content}</>;
 	}
 }
 
