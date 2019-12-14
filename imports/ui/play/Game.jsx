@@ -4,7 +4,7 @@ import _ from "lodash";
 import { GameMethods } from "../../api/shared/methods/game_methods";
 
 class Game extends React.Component {
-	state = { letters: [], selected: [], score: 0, seconds: 60 };
+	state = { letters: [], selected: [], score: 0, seconds: 3, words: [] };
 
 	componentWillUnmount() {
 		clearInterval(this.interval);
@@ -21,19 +21,33 @@ class Game extends React.Component {
 		this.setState({ letters });
 	}
 
+	componentDidUpdate() {
+		if (!this.state.seconds) {
+			const { score, words } = this.state;
+			this.props.actions.saveLatest(score);
+			GameMethods.saveGame.call({ score, words }, (err, res) => {
+				if (err) alert(err);
+				else {
+				}
+				FlowRouter.go("/result");
+			});
+		}
+	}
+
 	getRandomChar() {
 		const alphabets = "abcdefghijklmnopqrstuvwxyz";
 		return alphabets[Math.floor(Math.random() * 25)];
 	}
 
 	onEnter(word) {
-		const { selected, letters, score } = this.state;
+		const { selected, letters, score, words } = this.state;
 		GameMethods.validateInput.call({ word }, (err, res) => {
 			if (err) alert(err);
 			if (res) {
 				selected.forEach(({ index }) => {
 					letters[index] = this.getRandomChar();
 				});
+				words.push(word);
 				this.setState({ score: score + word.length, letters, selected: [] });
 			}
 		});
@@ -87,14 +101,26 @@ class Game extends React.Component {
 				<div style={{ width: "600px", margin: "0 auto" }}>
 					{this.renderGameButtons()}
 					<div className="bottom flex-row">
-						<div className="col-sm-4" style={{ fontSize: "100px" }}>
+						<div className="col-sm-3" style={{ fontSize: "100px" }}>
 							{seconds}
 						</div>
-						<div className="col-sm-8">
+						<div className="col-sm-9">
 							<div className="selected-chars">{word}</div>
 							<div className="pull-right">
-								<button onClick={() => this.onEnter(word)}>Enter</button>
-								<button onClick={() => this.onBackspace()}>Backspace</button>
+								<div style={{ textAlign: "right" }}>
+									<button
+										className="btn btn-primary margin-right-10"
+										onClick={() => this.onEnter(word)}
+									>
+										Enter
+									</button>
+									<button
+										className="btn btn-primary"
+										onClick={() => this.onBackspace()}
+									>
+										Backspace
+									</button>
+								</div>
 								<h4 className="score">Score: {score}</h4>
 							</div>
 						</div>

@@ -8,7 +8,7 @@ class Play extends React.Component {
 
 	render() {
 		return this.state.play ? (
-			<Game />
+			<Game {...this.props} />
 		) : (
 			<StartPrompt onStartClick={this.startPlay} />
 		);

@@ -5,6 +5,7 @@ import AppContainer from "../../ui/AppContainer";
 import SignUp from "../../ui/SignUp";
 import Home from "../../ui/Home";
 import PlayContainer from "../../ui/play/PlayContainer";
+import ResultContainer from "../../ui/result/ResultContainer";
 
 export const appRoutes = [
 	FlowRouter.route("/", {
@@ -22,7 +23,15 @@ export const appRoutes = [
 	FlowRouter.route("/play", {
 		name: "play",
 		action() {
-			mount(AppContainer, { content: <PlayContainer /> });
+			mount(AppContainer, { content: props => <PlayContainer {...props} /> });
+		}
+	}),
+	FlowRouter.route("/result", {
+		name: "result",
+		action() {
+			mount(AppContainer, {
+				content: props => <ResultContainer {...props} />
+			});
 		}
 	})
 ];

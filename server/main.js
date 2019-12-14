@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import "../imports/api/server/publications/account_publications";
+import "../imports/api/server/publications/game_publications";
 import "../imports/api/shared/methods/user_methods";
 import "../imports/api/shared/methods/game_methods";
 

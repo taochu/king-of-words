@@ -5,9 +5,9 @@ class Home extends React.Component {
 
 	render() {
 		const { username, password } = this.state;
-		const { ready, user } = this.props;
+		const { userHandleReady, user } = this.props;
 
-		if (!ready) return <div>LOADING</div>;
+		if (!userHandleReady) return <div>LOADING</div>;
 		return (
 			<div className="flex-column space-20">
 				<h1>King of Words</h1>
