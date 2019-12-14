@@ -4,9 +4,9 @@ export const Games = new Mongo.Collection("games");
 
 Games.schema = new SimpleSchema({
 	createdAt: { type: Date },
-	score: { type: String },
+	score: { type: Number },
 	userId: { type: String, optional: true },
-	username: { type: String, defaultValue: "Player" },
+	username: { type: String },
 	words: { type: Array, optional: true },
 	"words.$": { type: String, optional: true }
 });

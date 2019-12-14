@@ -4,7 +4,7 @@ import _ from "lodash";
 import { GameMethods } from "../../api/shared/methods/game_methods";
 
 class Game extends React.Component {
-	state = { letters: [], selected: [], score: 0, seconds: 3, words: [] };
+	state = { letters: [], selected: [], score: 0, seconds: 10, words: [] };
 
 	componentWillUnmount() {
 		clearInterval(this.interval);
@@ -21,13 +21,15 @@ class Game extends React.Component {
 		this.setState({ letters });
 	}
 
-	componentDidUpdate() {
-		if (!this.state.seconds) {
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.seconds === 1 && this.state.seconds === 0) {
 			const { score, words } = this.state;
 			this.props.actions.saveLatest(score);
+
 			GameMethods.saveGame.call({ score, words }, (err, res) => {
 				if (err) alert(err);
 				else {
+					console.log("saved");
 				}
 				FlowRouter.go("/result");
 			});

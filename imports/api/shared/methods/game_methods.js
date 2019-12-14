@@ -33,7 +33,7 @@ GameMethods.saveGame = new ValidatedMethod({
 			score,
 			words,
 			userId: _id,
-			username
+			username: username || "Player"
 		});
 	}
 });

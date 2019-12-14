@@ -4,7 +4,7 @@ import { Games } from "../../shared/models/games";
 Meteor.publish("getTopTen", function() {
 	return Games.find(
 		{},
-		{ fields: { score: 1 }, sort: { score: -1 }, limit: 10 }
+		{ fields: { username: 1, score: 1 }, sort: { score: -1 }, limit: 10 }
 	);
 });
 
