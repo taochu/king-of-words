@@ -1,3 +1,5 @@
+@import "./components";
+
 /* Common */
 .flex {
 	display: flex;
@@ -26,8 +28,18 @@
 	margin-bottom: 20px;
 }
 
+.space-10 > * {
+	margin-bottom: 10px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
 .space-20 > * {
 	margin-bottom: 20px;
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
 .divider {
@@ -42,6 +54,12 @@
 // App
 .container {
 	padding-top: 30px;
+}
+
+// Home page
+.home {
+	margin: 0 auto;
+	width: 300px;
 }
 
 // Sign up page

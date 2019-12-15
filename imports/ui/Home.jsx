@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "./components/Button";
+import Input from "./components/Input";
 
 class Home extends React.Component {
 	state = { username: "", password: "" };
@@ -9,23 +11,22 @@ class Home extends React.Component {
 
 		if (!userHandleReady) return <div>LOADING</div>;
 		return (
-			<div className="flex-column space-20">
-				<h1>King of Words</h1>
-				<div className="flex-column">
-					<input
-						type="text"
+			<div className="home flex-column space-20">
+				<h1>KING OF WORDS</h1>
+				<div className="flex-column space-10">
+					<Input
 						placeholder="Username"
 						value={username}
 						onChange={e => this.setState({ username: e.target.value })}
 					/>
-					<input
-						type="text"
+					<Input
 						placeholder="Password"
 						value={password}
 						onChange={e => this.setState({ password: e.target.value })}
+						password
 					/>
 				</div>
-				<button
+				<Button
 					onClick={() => {
 						user
 							? Meteor.logout()
@@ -35,7 +36,7 @@ class Home extends React.Component {
 					}}
 				>
 					{user ? "Log out" : "Log in"}
-				</button>
+				</Button>
 				<div className="flex-row">
 					<div className="divider" />
 					<div style={{ color: "#999", lineHeight: "15px", margin: "0 18px" }}>
@@ -43,8 +44,8 @@ class Home extends React.Component {
 					</div>
 					<div className="divider" />
 				</div>
-				<button onClick={() => FlowRouter.go("/sign-up")}>Sign up</button>
-				<button onClick={() => FlowRouter.go("/play")}>Play</button>
+				<Button onClick={() => FlowRouter.go("/sign-up")}>Sign up</Button>
+				<Button onClick={() => FlowRouter.go("/play")}>Play as Guest</Button>
 			</div>
 		);
 	}

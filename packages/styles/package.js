@@ -1,12 +1,13 @@
 Package.describe({
 	name: "king-of-words:styles",
-	summary: "king of words style",
+	summary: "king of words styles",
 	version: "0.0.1"
 });
 
 Package.onUse(function(api) {
 	api.versionsFrom("METEOR@1.3");
 	api.use(["fourseven:scss"], "client");
+
 	api.addFiles(
 		[
 			// Bottelio theme common imports
@@ -17,5 +18,14 @@ Package.onUse(function(api) {
 		{ isImport: true }
 	);
 
-	api.addFiles(["client/styles/app.scss"], ["client"]);
+	api.addFiles(
+		[
+			// partials
+			"client/styles/_components.scss",
+
+			//sources
+			"client/styles/app.scss"
+		],
+		["client"]
+	);
 });
