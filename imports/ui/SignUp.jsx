@@ -1,5 +1,7 @@
 import React from "react";
 import { UserMethods } from "../api/shared/methods/user_methods";
+import Input from "./components/Input";
+import Button from "./components/Button";
 
 class SignUp extends React.Component {
 	state = {
@@ -12,41 +14,41 @@ class SignUp extends React.Component {
 		const { username, password, confirmPassword } = this.state;
 
 		return (
-			<div className="sign-up-page">
-				<h1>Sign Up</h1>
-				<div className="flex-column">
-					<input
-						type="text"
+			<div className="sign-up flex-column vertical space-20">
+				<h1>SIGN UP</h1>
+				<div className="flex-column space-10">
+					<Input
 						placeholder="Username"
 						value={username}
 						onChange={e => this.setState({ username: e.target.value })}
 					/>
-					<input
-						type="text"
+					<Input
 						placeholder="Password"
 						value={password}
 						onChange={e => this.setState({ password: e.target.value })}
+						password
 					/>
-					<input
-						type="text"
+					<Input
 						placeholder="Confirm Password"
 						value={confirmPassword}
 						onChange={e => this.setState({ confirmPassword: e.target.value })}
+						password
 					/>
-					<button
-						onClick={() =>
-							UserMethods.addUser.call(
-								{ option: { username, password } },
-								(err, res) => {
-									if (err) alert(err.error);
-									else FlowRouter.go("/");
-								}
-							)
-						}
-					>
-						Sign Up
-					</button>
 				</div>
+				<Button
+					onClick={() =>
+						UserMethods.addUser.call(
+							{ option: { username, password } },
+							(err, res) => {
+								if (err) alert(err.error);
+								else FlowRouter.go("/");
+							}
+						)
+					}
+				>
+					Sign Up
+				</Button>
+				<Button onClick={() => FlowRouter.go("/")}>home</Button>
 			</div>
 		);
 	}

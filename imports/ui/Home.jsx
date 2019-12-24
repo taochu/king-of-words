@@ -11,9 +11,9 @@ class Home extends React.Component {
 
 		if (!userHandleReady) return <div>LOADING</div>;
 		return (
-			<div className="home flex-column space-20">
+			<div className="home flex-column vertical space-20">
 				<h1>KING OF WORDS</h1>
-				<div className="flex-column space-10">
+				<div className="flex-column vertical space-10">
 					<Input
 						placeholder="Username"
 						value={username}
@@ -45,7 +45,7 @@ class Home extends React.Component {
 					<div className="divider" />
 				</div>
 				<Button onClick={() => FlowRouter.go("/sign-up")}>Sign up</Button>
-				<Button onClick={() => FlowRouter.go("/play")}>Play as Guest</Button>
+				<Button onClick={() => FlowRouter.go("/play")}>Play</Button>
 			</div>
 		);
 	}

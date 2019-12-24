@@ -10,7 +10,6 @@ export default ResultContainer = withTracker(props => {
 	Meteor.subscribe("getTopTen");
 	Meteor.subscribe("getUserBest");
 	Meteor.subscribe("getRank", props.latestScore);
-	console.log(props.latestScore);
 
 	const topTen = Games.find(
 		{},
@@ -20,14 +19,16 @@ export default ResultContainer = withTracker(props => {
 
 	const rank = Counter.get("getRank") + 1;
 
-	const userBest = _.head(
-		Games.find(
-			{
-				userId: Meteor.userId()
-			},
-			{ sort: { score: -1 }, limit: 1 }
-		).fetch()
-	);
+	const userBest = Meteor.userId()
+		? _.head(
+				Games.find(
+					{
+						userId: Meteor.userId()
+					},
+					{ sort: { score: -1 }, limit: 1 }
+				).fetch()
+		  )
+		: null;
 
 	return { topTen, rank, userBest };
 })(Result);

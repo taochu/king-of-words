@@ -28,17 +28,35 @@
 	margin-bottom: 20px;
 }
 
-.space-10 > * {
-	margin-bottom: 10px;
-	&:last-child {
-		margin-bottom: 0;
+.vertical {
+	&.space-10 > * {
+		margin-bottom: 10px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&.space-20 > * {
+		margin-bottom: 20px;
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 }
 
-.space-20 > * {
-	margin-bottom: 20px;
-	&:last-child {
-		margin-bottom: 0;
+.horizontal {
+	&.space-10 > * {
+		margin-right: 10px;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	&.space-20 > * {
+		margin-right: 20px;
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 }
 
@@ -59,15 +77,24 @@
 // Home page
 .home {
 	margin: 0 auto;
-	width: 300px;
+	width: 350px;
+
+	h1 {
+		text-align: center;
+		font-family: "Playfair Display", serif;
+	}
 }
 
 // Sign up page
-.sign-up-page {
-	text-align: center;
+.sign-up {
+	margin: 0 auto;
+	width: 300px;
+
+	h1 {
+		text-align: center;
+	}
 }
 
-// Play Page
 .centered {
 	display: flex;
 	justify-content: center;
@@ -79,6 +106,7 @@
 	position: fixed;
 }
 
+// Game page
 .game-page {
 	.game-btn {
 		width: 60px;
@@ -86,9 +114,12 @@
 		border-radius: 5px;
 		outline: none;
 		text-transform: capitalize;
+		font-family: "Fira Sans", sans-serif;
+		font-size: 20px;
 
 		&.selected {
 			background-color: #28a745;
+			color: white;
 
 			&:hover {
 				background-color: #28a745;
@@ -118,20 +149,79 @@
 
 	.selected-chars {
 		text-transform: uppercase;
-		height: 40px;
-		font-size: 36px;
-		margin-bottom: 20px;
-		direction: RTL;
+		height: 60px;
+		font-size: 40px;
+		margin-bottom: 10px;
+		border-bottom: 0.2px solid lightgray;
 		width: 100%;
 		overflow-x: scroll;
 		overflow-y: hidden;
+		direction: rtl;
+		font-family: "Fira Sans", sans-serif;
+		font-style: italic;
 	}
 
 	.score {
-		font-size: 30px;
+		margin: 5px 0 0 10px;
+		font-size: 40px;
+		font-family: "Fira Sans", sans-serif;
+		font-style: italic;
 	}
 
 	.counter {
 		font-size: 100px;
+		font-family: "Fira Sans", sans-serif;
+		font-style: italic;
+	}
+}
+
+.results {
+	margin: 0 auto;
+	width: 450px;
+	align-items: center;
+
+	.result-rows {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 0;
+
+		.result-col {
+			text-align: center;
+
+			.secondary-text {
+				color: #a9a9a9;
+			}
+
+			.big-result {
+				font-size: 72px;
+			}
+
+			.sign-in-prompt {
+				margin-top: 30px;
+				font-size: 30px;
+
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+
+	.top-ten-card {
+		padding: 10px;
+		height: 70px;
+		width: 100%;
+		box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		text-transform: uppercase;
+		display: flex;
+		justify-content: space-between;
+
+		h2,
+		h3 {
+			margin: 0;
+			align-self: center;
+		}
 	}
 }

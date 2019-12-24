@@ -18,8 +18,6 @@ Meteor.publish("getRank", function(userScore) {
 });
 
 Meteor.publish("getUserBest", function() {
-	if (!Meteor.userId()) return this.ready();
-
 	return Games.find(
 		{
 			userId: Meteor.userId()
