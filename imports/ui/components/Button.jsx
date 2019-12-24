@@ -1,8 +1,10 @@
 import React from "react";
+import classnames from "classnames";
 
-const Button = ({ children, onClick }) => {
+const Button = ({ children, onClick, className }) => {
+	const cn = classnames("button", className);
 	return (
-		<button className="button" onClick={onClick}>
+		<button className={cn} onClick={onClick}>
 			{children}
 		</button>
 	);

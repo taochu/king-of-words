@@ -15,12 +15,48 @@
 	flex-direction: column;
 }
 
+.grid-2 {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-items: center;
+
+	&.no-gap {
+		grid-gap: 0;
+	}
+}
+
+.grid-3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-items: center;
+
+	&.no-gap {
+		grid-gap: 0;
+	}
+}
+
 .pull-right {
 	float: right;
 }
 
 .margin-right-10 {
 	margin-right: 10px;
+}
+
+.margin-bottom-20 {
+	margin-bottom: 20px;
+}
+
+.margin-top-10 {
+	margin-top: 10px;
+}
+
+.margin-top-20 {
+	margin-top: 20px;
+}
+
+.margin-top-30 {
+	margin-top: 30px;
 }
 
 .margin-vertical-20 {
@@ -69,6 +105,14 @@
 	background-color: #efefef;
 }
 
+.big-font {
+	font-size: 72px;
+}
+
+.secondary-text {
+	color: #a9a9a9;
+}
+
 // App
 .container {
 	padding-top: 30px;
@@ -79,7 +123,7 @@
 	margin: 0 auto;
 	width: 350px;
 
-	h1 {
+	.title {
 		text-align: center;
 		font-family: "Playfair Display", serif;
 	}
@@ -180,6 +224,10 @@
 	width: 450px;
 	align-items: center;
 
+	button {
+		width: 100%;
+	}
+
 	.result-rows {
 		width: 100%;
 		display: grid;
@@ -188,14 +236,6 @@
 
 		.result-col {
 			text-align: center;
-
-			.secondary-text {
-				color: #a9a9a9;
-			}
-
-			.big-result {
-				font-size: 72px;
-			}
 
 			.sign-in-prompt {
 				margin-top: 30px;
@@ -222,6 +262,36 @@
 		h3 {
 			margin: 0;
 			align-self: center;
+		}
+	}
+}
+
+.user-info-card {
+	height: 300px;
+	width: 100%;
+	border: 0.2px solid lightgray;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
+	padding: 20px;
+
+	.grid-2,
+	.grid-3 {
+		height: 50%;
+		text-align: center;
+	}
+
+	.grid-2 {
+		grid-template-columns: 40% 60%;
+
+		img {
+			width: 130px;
+			height: 130px;
+			border-radius: 50%;
+		}
+
+		.username {
+			text-transform: uppercase;
+			margin: auto 0;
 		}
 	}
 }

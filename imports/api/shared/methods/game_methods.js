@@ -35,5 +35,6 @@ GameMethods.saveGame = new ValidatedMethod({
 			userId: _id,
 			username: username || "Player"
 		});
+		Meteor.users.update({ _id }, { $inc: { totalScore: score } });
 	}
 });

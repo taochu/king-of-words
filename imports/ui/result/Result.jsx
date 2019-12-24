@@ -1,24 +1,26 @@
 import React from "react";
+import _ from "lodash";
+import Button from "../components/Button";
 
 class Result extends React.Component {
 	renderResultRow() {
-		const { rank, userBest, latestScore } = this.props;
+		const { user, rank, userBest, latestScore } = this.props;
 
 		return (
 			<div className="result-rows">
 				<div className="result-col">
 					<div className="secondary-text">RANK</div>
-					<div className="big-result">{rank}</div>
+					<div className="big-font">{rank}</div>
 				</div>
 				<div className="result-col">
 					<div className="secondary-text">SCORE</div>
-					<div className="big-result">{latestScore}</div>
+					<div className="big-font">{latestScore}</div>
 				</div>
 				<div className="result-col">
-					{userBest ? (
+					{user ? (
 						<>
 							<div className="secondary-text">YOUR BEST</div>
-							<div className="big-result"> {userBest.score}</div>
+							<div className="big-font"> {_.get(userBest, "score")}</div>
 						</>
 					) : (
 						<>
@@ -32,6 +34,7 @@ class Result extends React.Component {
 			</div>
 		);
 	}
+
 	render() {
 		const { topTen } = this.props;
 
@@ -46,6 +49,15 @@ class Result extends React.Component {
 							<h2>{score}</h2>
 						</div>
 					))}
+					<Button
+						className="margin-top-20"
+						onClick={() => FlowRouter.go("/play")}
+					>
+						Play Again
+					</Button>
+					<Button className="margin-top-10" onClick={() => FlowRouter.go("/")}>
+						Home
+					</Button>
 				</div>
 			</div>
 		);

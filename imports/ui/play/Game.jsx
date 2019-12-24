@@ -6,17 +6,17 @@ import ASSET_URLS from "../asset_urls";
 import ActionButton from "../components/ActionButton";
 
 class Game extends React.Component {
-	state = { letters: [], selected: [], score: 0, seconds: 60, words: [] };
+	state = { letters: [], selected: [], score: 0, seconds: 10, words: [] };
 
 	componentWillUnmount() {
-		// clearInterval(this.interval);
+		clearInterval(this.interval);
 	}
 
 	componentDidMount() {
 		const letters = [];
-		// this.interval = setInterval(() => {
-		// 	this.setState({ seconds: this.state.seconds - 1 });
-		// }, 1000);
+		this.interval = setInterval(() => {
+			this.setState({ seconds: this.state.seconds - 1 });
+		}, 1000);
 		for (const i in _.range(100)) {
 			letters.push(this.getRandomChar());
 		}
@@ -24,14 +24,14 @@ class Game extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		// if (prevState.seconds === 1 && this.state.seconds === 0) {
-		// 	const { score, words } = this.state;
-		// 	this.props.actions.saveLatest(score);
-		// 	GameMethods.saveGame.call({ score, words }, (err, res) => {
-		// 		if (err) alert(err);
-		// 		FlowRouter.go("/result");
-		// 	});
-		// }
+		if (prevState.seconds === 1 && this.state.seconds === 0) {
+			const { score, words } = this.state;
+			this.props.actions.saveLatest(score);
+			GameMethods.saveGame.call({ score, words }, (err, res) => {
+				if (err) alert(err);
+				FlowRouter.go("/result");
+			});
+		}
 	}
 
 	getRandomChar() {

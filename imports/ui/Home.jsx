@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./components/Button";
 import Input from "./components/Input";
+import LoggedInHome from "./LoggedInHome";
 
 class Home extends React.Component {
 	state = { username: "", password: "" };
@@ -10,9 +11,13 @@ class Home extends React.Component {
 		const { userHandleReady, user } = this.props;
 
 		if (!userHandleReady) return <div>LOADING</div>;
+		if (user) {
+			return <LoggedInHome {...this.props} />;
+		}
+
 		return (
 			<div className="home flex-column vertical space-20">
-				<h1>KING OF WORDS</h1>
+				<h1 className="title">KING OF WORDS</h1>
 				<div className="flex-column vertical space-10">
 					<Input
 						placeholder="Username"
@@ -27,15 +32,13 @@ class Home extends React.Component {
 					/>
 				</div>
 				<Button
-					onClick={() => {
-						user
-							? Meteor.logout()
-							: Meteor.loginWithPassword(username, password, (err, res) => {
-									if (err) alert(err);
-							  });
-					}}
+					onClick={() =>
+						Meteor.loginWithPassword(username, password, (err, res) => {
+							if (err) alert(err);
+						})
+					}
 				>
-					{user ? "Log out" : "Log in"}
+					Log in
 				</Button>
 				<div className="flex-row">
 					<div className="divider" />
