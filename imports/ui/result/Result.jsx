@@ -36,15 +36,15 @@ class Result extends React.Component {
 	}
 
 	render() {
-		const { topTen } = this.props;
+		const { topFive } = this.props;
 
 		return (
 			<div className="centered">
 				<div className="results flex-column">
 					{this.renderResultRow()}
-					<h3>ALL TIME TOP 10</h3>
-					{topTen.map(({ username, score }, i) => (
-						<div className="top-ten-card" key={i}>
+					<h3>ALL TIME TOP 5</h3>
+					{topFive.map(({ username, score }, i) => (
+						<div className="top-five-card" key={i}>
 							<h3>{username}</h3>
 							<h2>{score}</h2>
 						</div>

@@ -10,6 +10,7 @@ const appReducer = (state = defaultState, action) => {
 	switch (action.type) {
 		case "SAVE_LATEST":
 			newState.latestScore = action.score;
+			break;
 		default:
 			break;
 	}

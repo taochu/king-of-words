@@ -7,13 +7,13 @@ import Result from "./Result";
 import { Games } from "../../api/shared/models/games";
 
 export default ResultContainer = withTracker(props => {
-	Meteor.subscribe("getTopTen");
+	Meteor.subscribe("getTopFive");
 	Meteor.subscribe("getUserBest");
 	Meteor.subscribe("getRank", props.latestScore);
 
-	const topTen = Games.find(
+	const topFive = Games.find(
 		{},
-		{ fields: { score: 1, username: 1 }, sort: { score: -1 }, limit: 10 }
+		{ fields: { score: 1, username: 1 }, sort: { score: -1 }, limit: 5 }
 	).fetch();
 
 	const rank = Counter.get("getRank") + 1;
@@ -29,5 +29,5 @@ export default ResultContainer = withTracker(props => {
 		  )
 		: null;
 
-	return { topTen, rank, userBest };
+	return { topFive, rank, userBest };
 })(Result);

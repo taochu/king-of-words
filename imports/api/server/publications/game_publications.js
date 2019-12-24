@@ -1,10 +1,10 @@
 import { Meteor } from "meteor/meteor";
 import { Games } from "../../shared/models/games";
 
-Meteor.publish("getTopTen", function() {
+Meteor.publish("getTopFive", function() {
 	return Games.find(
 		{},
-		{ fields: { score: 1, username: 1 }, sort: { score: -1 }, limit: 10 }
+		{ fields: { score: 1, username: 1 }, sort: { score: -1 }, limit: 5 }
 	);
 });
 
