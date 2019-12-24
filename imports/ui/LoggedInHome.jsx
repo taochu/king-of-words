@@ -1,6 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import Button from "./components/Button";
+import ASSET_URLS from "./asset_urls";
 
 class LoggedInHome extends React.Component {
 	renderUserInfoCard() {
@@ -11,7 +12,7 @@ class LoggedInHome extends React.Component {
 		return (
 			<div className="user-info-card">
 				<div className="grid-2 margin-bottom-20">
-					<img src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+					<img src={ASSET_URLS.account} />
 					<h1 className="username">{username}</h1>
 				</div>
 				<div className="grid-3">

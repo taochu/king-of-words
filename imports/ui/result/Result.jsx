@@ -43,8 +43,8 @@ class Result extends React.Component {
 				<div className="results flex-column">
 					{this.renderResultRow()}
 					<h3>ALL TIME TOP 10</h3>
-					{topTen.map(({ username, score }) => (
-						<div className="top-ten-card">
+					{topTen.map(({ username, score }, i) => (
+						<div className="top-ten-card" key={i}>
 							<h3>{username}</h3>
 							<h2>{score}</h2>
 						</div>

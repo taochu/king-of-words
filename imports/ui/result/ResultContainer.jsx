@@ -13,8 +13,7 @@ export default ResultContainer = withTracker(props => {
 
 	const topTen = Games.find(
 		{},
-		{ fields: { score: 1, username: 1 } },
-		{ sort: { score: -1 }, limit: 10 }
+		{ fields: { score: 1, username: 1 }, sort: { score: -1 }, limit: 10 }
 	).fetch();
 
 	const rank = Counter.get("getRank") + 1;
