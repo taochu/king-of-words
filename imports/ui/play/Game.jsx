@@ -6,17 +6,70 @@ import ASSET_URLS from "../asset_urls";
 import ActionButton from "../components/ActionButton";
 
 class Game extends React.Component {
-	state = { letters: [], selected: [], score: 0, seconds: 10, words: [] };
+	state = {
+		letters: [],
+		selected: [],
+		score: 0,
+		seconds: 10,
+		words: [],
+		hovering: 45
+	};
+
+	componentWillMount() {
+		document.addEventListener("keydown", this.onKeyDown.bind(this));
+	}
 
 	componentWillUnmount() {
-		clearInterval(this.interval);
+		// clearInterval(this.interval);
+		document.removeEventListener("keydown", this.onKeyDown.bind(this));
+	}
+
+	onKeyDown(e) {
+		// 13: enter, 32: space, 8: backspace, 9: tab
+		// 37: left, 38: up, 39: right, 40: down
+		e.preventDefault();
+		const { selected, hovering, letters } = this.state;
+		const key = e.keyCode;
+		const word = _.map(selected, ({ letter }) => letter).join("");
+
+		switch (key) {
+			case 13:
+				this.onEnter(word);
+				break;
+			case 32:
+				const letter = letters[hovering];
+				this.onSelect(letter, hovering);
+				break;
+			case 8:
+				this.onBackspace();
+				break;
+			case 9:
+				this.onClear();
+				break;
+			case 37:
+				this.setState({ hovering: hovering - 1 });
+				break;
+			case 38:
+				if (hovering >= 10) {
+					this.setState({ hovering: hovering - 10 });
+				}
+				break;
+			case 39:
+				this.setState({ hovering: hovering + 1 });
+				break;
+			case 40:
+				if (hovering <= 89) {
+					this.setState({ hovering: hovering + 10 });
+				}
+				break;
+		}
 	}
 
 	componentDidMount() {
 		const letters = [];
-		this.interval = setInterval(() => {
-			this.setState({ seconds: this.state.seconds - 1 });
-		}, 1000);
+		// this.interval = setInterval(() => {
+		// 	this.setState({ seconds: this.state.seconds - 1 });
+		// }, 1000);
 		for (const i in _.range(100)) {
 			letters.push(this.getRandomChar());
 		}
@@ -63,8 +116,21 @@ class Game extends React.Component {
 		this.setState({ selected: [] });
 	};
 
+	onSelect(letter, index) {
+		this.setState(prevState => {
+			const { selected } = prevState;
+			const existed = _.find(
+				selected,
+				({ index: existedIndex }) => existedIndex === index
+			);
+			existed ? _.pull(selected, existed) : selected.push({ letter, index });
+			return selected;
+		});
+	}
+
 	renderGameButtons() {
-		const { letters, selected } = this.state;
+		const { letters, selected, hovering } = this.state;
+
 		return (
 			<div className="game-grid">
 				{letters.map((letter, index) => {
@@ -72,18 +138,20 @@ class Game extends React.Component {
 						<CharButton
 							key={index}
 							letter={letter}
+							hovered={index == hovering}
 							onClick={() =>
-								this.setState(prevState => {
-									const { selected } = prevState;
-									const existed = _.find(
-										selected,
-										({ index: existedIndex }) => existedIndex === index
-									);
-									existed
-										? _.pull(selected, existed)
-										: selected.push({ letter, index });
-									return selected;
-								})
+								// this.setState(prevState => {
+								// 	const { selected } = prevState;
+								// 	const existed = _.find(
+								// 		selected,
+								// 		({ index: existedIndex }) => existedIndex === index
+								// 	);
+								// 	existed
+								// 		? _.pull(selected, existed)
+								// 		: selected.push({ letter, index });
+								// 	return selected;
+								// })
+								this.onSelect(letter, index)
 							}
 							selected={_.some(
 								selected,

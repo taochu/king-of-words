@@ -16,7 +16,7 @@ const ActionButton = ({ type, onClick }) => {
 	}
 
 	return (
-		<button class={`btn action-btn ${type}`} onClick={onClick}>
+		<button className={`btn action-btn ${type}`} onClick={onClick}>
 			<img src={icon} />
 		</button>
 	);
