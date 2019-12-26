@@ -10,7 +10,7 @@ class Game extends React.Component {
 		letters: [],
 		selected: [],
 		score: 0,
-		seconds: 10,
+		seconds: 60,
 		words: [],
 		hovering: 45
 	};
@@ -20,7 +20,7 @@ class Game extends React.Component {
 	}
 
 	componentWillUnmount() {
-		// clearInterval(this.interval);
+		clearInterval(this.interval);
 		document.removeEventListener("keydown", this.onKeyDown.bind(this));
 	}
 
@@ -67,9 +67,9 @@ class Game extends React.Component {
 
 	componentDidMount() {
 		const letters = [];
-		// this.interval = setInterval(() => {
-		// 	this.setState({ seconds: this.state.seconds - 1 });
-		// }, 1000);
+		this.interval = setInterval(() => {
+			this.setState({ seconds: this.state.seconds - 1 });
+		}, 1000);
 		for (const i in _.range(100)) {
 			letters.push(this.getRandomChar());
 		}
