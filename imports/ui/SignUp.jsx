@@ -36,15 +36,17 @@ class SignUp extends React.Component {
 					/>
 				</div>
 				<Button
-					onClick={() =>
-						UserMethods.addUser.call(
-							{ option: { username, password } },
-							(err, res) => {
-								if (err) alert(err.error);
-								else FlowRouter.go("/");
-							}
-						)
-					}
+					onClick={() => {
+						if (password !== confirmPassword) alert("Passwords don't match");
+						else
+							UserMethods.addUser.call(
+								{ option: { username, password } },
+								(err, res) => {
+									if (err) alert(err.error);
+									else FlowRouter.go("/");
+								}
+							);
+					}}
 				>
 					Sign Up
 				</Button>

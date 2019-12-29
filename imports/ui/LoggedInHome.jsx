@@ -31,7 +31,7 @@ class LoggedInHome extends React.Component {
 					<div>
 						<div className="secondary-text">AVG. SCORE</div>
 						<div className="big-font">
-							{numGameUserPlayed
+							{numGameUserPlayed && totalScore
 								? _.round(totalScore / numGameUserPlayed, 1)
 								: 0}
 						</div>
