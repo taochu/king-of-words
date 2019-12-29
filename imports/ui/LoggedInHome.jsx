@@ -17,7 +17,7 @@ class LoggedInHome extends React.Component {
 				</div>
 				<div className="grid-3">
 					<div>
-						<div className="secondary-text">BEST SCORE</div>
+						<div className="secondary-text">BEST</div>
 						{bestScore ? (
 							<div className="big-font">{bestScore}</div>
 						) : (

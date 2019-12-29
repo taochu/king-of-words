@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./components/Button";
 import Input from "./components/Input";
+import Loader from "./components/Loader";
 import LoggedInHome from "./LoggedInHome";
 
 class Home extends React.Component {
@@ -10,7 +11,13 @@ class Home extends React.Component {
 		const { username, password } = this.state;
 		const { userHandleReady, user } = this.props;
 
-		if (!userHandleReady) return <div>LOADING</div>;
+		if (!userHandleReady)
+			return (
+				<div className="centered">
+					<Loader />
+				</div>
+			);
+
 		if (user) {
 			return <LoggedInHome {...this.props} />;
 		}
