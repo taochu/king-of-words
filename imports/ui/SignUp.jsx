@@ -16,7 +16,7 @@ class SignUp extends React.Component {
 		return (
 			<div className="sign-up flex-column vertical space-20">
 				<h1>SIGN UP</h1>
-				<div className="flex-column space-10">
+				<div className="flex-column vertical space-10">
 					<Input
 						placeholder="Username"
 						value={username}

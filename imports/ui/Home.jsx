@@ -5,7 +5,6 @@ import LoggedInHome from "./LoggedInHome";
 
 class Home extends React.Component {
 	state = { username: "", password: "" };
-	// use buildpack
 
 	render() {
 		const { username, password } = this.state;
